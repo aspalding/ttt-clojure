@@ -31,3 +31,10 @@
     (if (= (flatten (partition 1 3 (subvec board i 9))) (repeat 3 mark))
       true
     (recur (inc i))))))
+
+  (defn winner? [board mark]
+    (or
+      (horizontal? board mark)
+      (diagonal1? board mark)
+      (diagonal2? board mark)
+      (vertical? board mark)))

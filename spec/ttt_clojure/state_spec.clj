@@ -36,3 +36,24 @@
      (let [board (board/create-board 3)
        board (assoc board 0 "x" 3 "x" 6 "x")]
        (should (state/vertical? board "x")))))
+
+  (describe "winner?"
+    (it "should return true if there is any winning position (vert)"
+      (let [board (board/create-board 3)
+        board (assoc board 1 "x" 4 "x" 7 "x")]
+        (should (state/winner? board "x"))))
+    (it "should return true if there is any winning position (dia)"
+      (let [board (board/create-board 3)
+        board (assoc board 2 "x" 4 "x" 6 "x")]
+        (should (state/winner? board "x"))))
+    (it "should return true if there is any winning position (dia)"
+      (let [board (board/create-board 3)
+        board (assoc board 0 "x" 3 "x" 6 "x")]
+        (should (state/winner? board "x"))))
+    (it "should return true if there is any winning position (horiz)"
+      (let [board (board/create-board 3)
+        board (assoc board 3 "x" 4 "x" 5 "x")]
+        (should (state/winner? board "x"))))
+    (it "should not if the board is empty"
+      (let [board (board/create-board 3)]
+        (should-not (state/winner? board "x")))))
