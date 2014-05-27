@@ -18,3 +18,21 @@
       (let [board (board/create-board 3)
           board (assoc board 0 "x" 1 "x" 2 "x")]
           (should (state/horizontal? board "x")))))
+
+  (describe "diagonal1?"
+    (it "should return true if there are three marks in a row diagonally"
+      (let [board (board/create-board 3)
+        board (assoc board 0 "x" 4 "x" 8 "x")]
+        (should (state/diagonal1? board "x")))))
+
+  (describe "diagonal2?"
+    (it "should return true if there are three marks in a row diagonally"
+      (let [board (board/create-board 3)
+        board (assoc board 2 "x" 4 "x" 6 "x")]
+        (should (state/diagonal2? board "x")))))
+
+  (describe "vertical?"
+   (it "shoud return true if there are three marks in a row vertically"
+     (let [board (board/create-board 3)
+       board (assoc board 0 "x" 3 "x" 6 "x")]
+       (should (state/vertical? board "x")))))
