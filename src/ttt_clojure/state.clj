@@ -5,10 +5,10 @@
     (= (board/possible-moves board) () ))
 
   (defn opposing? [player]
-    (if (= player "X")
-        "O"
-        (if (= player "O")
-            "X")))
+    (if (= player "x")
+        "o"
+        (if (= player "o")
+            "x")))
 
   (defn horizontal? [board mark]
     (loop [i 0]

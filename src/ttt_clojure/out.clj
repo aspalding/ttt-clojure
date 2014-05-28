@@ -9,7 +9,24 @@
           (flatten (partition 3 board)))))
 
   (defn prompt [board mark]
-    (board/place-piece board mark (Integer/parseInt (read-line))))
+    (println "Enter valid position (0..8)")
+    (let [input (Integer/parseInt (read-line))]
+      (if (board/valid? board input)
+        (board/place-piece board mark input)
+        (recur board mark))))
+
+  (defn winning-mark [mark]
+    (print (str mark " is the winner!")))
+
+  (defn run-loop []
+    (def board (board/create-board 3))
+    (def player "x")
+    (loop [game board player player]
+      (show-board game)
+      (if (state/winner? game (state/opposing? player))
+        (winning-mark (state/opposing? player))
+      (recur (prompt game player) (state/opposing? player)))))
 
   (defn -main []
-    (println "testing."))
+    (println "testing.")
+    (run-loop))

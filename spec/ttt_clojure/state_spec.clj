@@ -10,8 +10,8 @@
 
   (describe "opposing?"
     (it "should return the mark opposite of the current mark"
-      (def player "O" )
-      (should= "X" (state/opposing? player))))
+      (def player "o" )
+      (should= "x" (state/opposing? player))))
 
   (describe "horizontal?"
     (it "should return true if there are three marks in a row horiontally"
