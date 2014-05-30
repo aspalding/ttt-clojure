@@ -20,6 +20,12 @@
                              6 "o" 7 "x" 8 "o")]
       (should= 0 (ai/score board "o")))))
 
+  (describe "minimax"
+    (it "should stop branching if winner"
+    (let [board (board/create-board 3)
+        board (assoc board 0 "x" 1 "x" 2 "-")]
+        (should= 10 (ai/minimax board 2 "o")))))
+
 
 (comment
   (describe "not smart"
@@ -27,12 +33,4 @@
     (let [board (board/create-board 3)
         board (assoc board 0 "x" 1 "x" 2 "x")]
       (should-be-a Integer (ai/pick-move (board))))))
-
-
-
-  (describe "minimax"
-    (it "should stop branching if winner"
-    (let [board (board/create-board 3)
-        board (assoc board 0 "x" 1 "x" 2 "x")]
-        (should= 10 (ai/minimax board 2 "o")))))
 )

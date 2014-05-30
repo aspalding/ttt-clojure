@@ -18,14 +18,8 @@
   (defn pick-move [board]
     (board/place-piece board "o" (rand-move board)))
 
-(comment
   (defn minimax [board depth mark]
-    (def possible (board/possible-moves board))
-    (loop [i 0]
-
-    (when (< i (count possible))
-    (recur (board/place-piece board (nth possible i) mark)
-            (dec depth)
-            (state/opposing? mark))))
-          (if (or (state/terminal? board) (= depth 0))
-            (score board mark))))
+    (let [possible (board/possible-moves board)]
+    (if (or (state/terminal? board) (= depth 0))
+      (score board mark))
+    ))

@@ -22,6 +22,11 @@
   (defn tie []
     (print (str "It's a tie!\n")))
 
+  (defn over [board mark]
+    (if(state/winner? board mark)
+      (winning-mark mark)
+      (tie)))
+
   (defn who [game player]
     (if (= "x" player)
       (prompt game player)
@@ -32,10 +37,9 @@
     (def player "x")
     (loop [game board player player]
       (show-board game)
-      (if (state/winner? game (state/opposing? player))
-        (winning-mark (state/opposing? player))
+      (if (state/terminal? game)
+        (over game (state/opposing? player))
       (recur (who game player) (state/opposing? player)))))
-      ;(recur (prompt game player) (state/opposing? player))))))
 
   (defn -main []
     (println "testing.")
