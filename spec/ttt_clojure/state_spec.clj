@@ -57,3 +57,16 @@
     (it "should not if the board is empty"
       (let [board (board/create-board 3)]
         (should-not (state/winner? board "x")))))
+
+  (describe "terminal?"
+    (it "should return true if full."
+      (let [board (repeat 9 "x")]
+      (should (state/terminal? board))))
+    (it "should return true if game has winner."
+      (let [board (board/create-board 3)
+        board (assoc board 6 "x" 7 "x" 8 "x")]
+      (should (state/terminal? board))))
+    (it "should return true if game has winner."
+      (let [board (board/create-board 3)
+        board (assoc board 6 "o" 7 "o" 8 "o")]
+      (should (state/terminal? board)))))

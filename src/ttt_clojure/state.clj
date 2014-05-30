@@ -38,3 +38,7 @@
       (diagonal1? board mark)
       (diagonal2? board mark)
       (vertical? board mark)))
+
+  (defn terminal? [board]
+    (if (or (full? board) (winner? board "x") (winner? board "o"))
+      true))

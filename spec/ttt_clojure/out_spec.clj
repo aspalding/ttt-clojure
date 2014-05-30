@@ -19,5 +19,10 @@
 
   (describe "winning message"
     (it "should let the winner know they have won"
-      (should= "x is the winner!"
+      (should= "x is the winner!\n"
       (with-out-str (out/winning-mark "x")))))
+
+  (describe "tie message"
+    (it "should let the winner know they have won"
+      (should= "It's a tie!\n"
+      (with-out-str (out/tie)))))

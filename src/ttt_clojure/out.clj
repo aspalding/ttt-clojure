@@ -1,6 +1,7 @@
 (ns ttt-clojure.out
   (:require [ttt-clojure.board  :as board]
-             [ttt-clojure.state :as state]))
+             [ttt-clojure.state :as state]
+             [ttt-clojure.ai :as ai]))
 
   (defn show-board [board]
     (print
@@ -16,7 +17,15 @@
         (recur board mark))))
 
   (defn winning-mark [mark]
-    (print (str mark " is the winner!")))
+    (print (str mark " is the winner!\n")))
+
+  (defn tie []
+    (print (str "It's a tie!\n")))
+
+  (defn who [game player]
+    (if (= "x" player)
+      (prompt game player)
+      (ai/pick-move game)))
 
   (defn run-loop []
     (def board (board/create-board 3))
@@ -25,7 +34,8 @@
       (show-board game)
       (if (state/winner? game (state/opposing? player))
         (winning-mark (state/opposing? player))
-      (recur (prompt game player) (state/opposing? player)))))
+      (recur (who game player) (state/opposing? player)))))
+      ;(recur (prompt game player) (state/opposing? player))))))
 
   (defn -main []
     (println "testing.")
