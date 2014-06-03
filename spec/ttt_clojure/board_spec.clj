@@ -1,4 +1,4 @@
-(ns ttt-clojure.core-spec
+(ns ttt-clojure.board-spec
   (:require [speclj.core :refer :all]
             [ttt-clojure.board :as board]))
 
@@ -17,7 +17,7 @@
     (should= "invalid" (board/place-piece board "x" -1)))))
 
 (describe "valid?"
-  (it "should only accept a valid move"
+  (it "should only accept a blank space"
     (let [board (board/create-board 3)
         board (board/place-piece board "x" 0)]
     (should-not (board/valid? board 0))))

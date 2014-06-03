@@ -2,7 +2,7 @@
   (:require [ttt-clojure.board  :as board]))
 
   (defn full? [board]
-    (= (board/possible-moves board) () ))
+    (= () (board/possible-moves board)))
 
   (defn opposing? [player]
     (if (= player "x")
