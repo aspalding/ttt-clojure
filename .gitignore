@@ -10,3 +10,4 @@ pom.xml
 .lein-plugins
 .lein-repl-history
 fsck.txt
+.DS_Store
